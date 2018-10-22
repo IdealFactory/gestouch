@@ -1,0 +1,15 @@
+{
+	"name": "gestouch",
+  	"license": "MIT",
+	"tags": ["touch", "gesture", "gestures", "multitouch", "utils", "flash", "cpp", "native", "js", "openfl"],
+	"description": "A multitouch gesture recognition library.",
+	"contributors": ["guruas3"],
+	"classPath":"org/",
+	"releasenote": "Initial haxelib release",
+	"version": "1.0.0",
+	"url": "https://github.com/guruas3/gestouch",
+	"dependencies": {
+    	"openfl": "",
+    	"lime": ""
+	}
+}
