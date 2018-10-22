@@ -70,25 +70,3 @@ private function getEffectiveScale(dob:DisplayObjectContainer, scale:Point = nul
     return scale;
 }
 ```
-
-
-## Dependencies
-**Install OpenFL**
-(4.9.2 Included)
-```
-haxelib install openfl
-haxelib run openfl setup
-```
-
-*Mac OS X: You will need to run the following commands to finish your install:*
-
-```
-sudo haxelib setup /usr/local/lib/haxe/lib
-sudo chmod 777 /usr/local/lib/haxe/lib
-```
-
-**Install Starling**
-(1.8.9 included)
-```
-haxelib install starling
-```

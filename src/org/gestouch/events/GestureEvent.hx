@@ -1,7 +1,7 @@
 package org.gestouch.events;
 
-import org.gestouch.core.GestureState;
 import openfl.events.Event;
+import org.gestouch.core.GestureState;
 
 class GestureEvent extends Event
 {
