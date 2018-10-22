@@ -20,17 +20,8 @@ class ZoomGesture extends AbstractContinuousGesture
 		super(target);
 	}
 
-	public var scaleX(get, default):Float = 1;
-	private function get_scaleX():Float
-	{
-		return scaleX;
-	}
-
-	public var scaleY(get, default):Float = 1;
-	private function get_scaleY():Float
-	{
-		return scaleY;
-	}
+	public var scaleX:Float = 1;
+	public var scaleY:Float = 1;
 
 	override public function reflect():Class<Dynamic>
 	{

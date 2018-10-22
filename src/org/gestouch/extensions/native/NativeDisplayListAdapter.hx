@@ -1,6 +1,7 @@
 package org.gestouch.extensions.native;
 
 import openfl.Vector;
+import openfl.utils.Object;
 import openfl.display.DisplayObject;
 import openfl.display.DisplayObjectContainer;
 import openfl.display.Stage;
@@ -70,9 +71,9 @@ class NativeDisplayListAdapter implements IDisplayListAdapter
 		return false;
 	}
 
-	public function getHierarchy(genericTarget:Dynamic):Vector<Dynamic>
+	public function getHierarchy(genericTarget:Dynamic):Vector<Object>
 	{
-		var list:Vector<Dynamic> = new Vector<Dynamic>();
+		var list:Vector<Object> = new Vector<Object>();
 		var i:Int = 0;
 		var target:DisplayObject = cast(genericTarget, DisplayObject);
 		while (target != null)

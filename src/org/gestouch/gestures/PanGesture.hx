@@ -80,7 +80,6 @@ class PanGesture extends AbstractContinuousGesture
 
 	override public function onTouchBegin(touch:Touch):Void
 	{
-		trace("PanGesture::onTouchBegin touchesCount: " + touchesCount + " minNumTouchesRequired: " + minNumTouchesRequired + " state: " + state.toString());
 		if (touchesCount > maxNumTouchesRequired)
 		{
 			failOrIgnoreTouch(touch);
@@ -95,7 +94,6 @@ class PanGesture extends AbstractContinuousGesture
 
 	override public function onTouchMove(touch:Touch):Void
 	{
-		trace("PanGesture::onTouchMove touchesCount: " + touchesCount + " minNumTouchesRequired: " + minNumTouchesRequired + " state: " + state.toString());
 		if (touchesCount < minNumTouchesRequired)
 			return;
 
@@ -142,7 +140,6 @@ class PanGesture extends AbstractContinuousGesture
 
 	override public function onTouchEnd(touch:Touch):Void
 	{
-		trace("PanGesture::onTouchEnd touchesCount: " + touchesCount + " minNumTouchesRequired: " + minNumTouchesRequired + " state: " + state.toString());
 		if (touchesCount < minNumTouchesRequired)
 		{
 			if (state == GestureState.POSSIBLE)

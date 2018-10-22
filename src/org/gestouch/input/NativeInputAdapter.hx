@@ -75,7 +75,7 @@ class NativeInputAdapter implements IInputAdapter
 
 		_stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, true);
 		_stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, false);
-		unstallMouseListeners();
+		uninstallMouseListeners();
 	}
 
 	private function installMouseListeners():Void
@@ -87,7 +87,7 @@ class NativeInputAdapter implements IInputAdapter
 		_stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false, 1024);
 	}
 
-	private function unstallMouseListeners():Void
+	private function uninstallMouseListeners():Void
 	{
 		_stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 		_stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false);
@@ -169,7 +169,7 @@ class NativeInputAdapter implements IInputAdapter
 
 		if (touchesManager.activeTouchesCount == 0)
 		{
-			unstallMouseListeners();
+			uninstallMouseListeners();
 		}
 	}
 }

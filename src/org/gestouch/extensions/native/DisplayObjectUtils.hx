@@ -18,7 +18,9 @@ class DisplayObjectUtils
 	public static function getTopTarget(stage:Stage, point:Point):InteractiveObject
 	{
 		// reversing so we search top down
-		var targets:Array = stage.getObjectsUnderPoint(point).reverse();
+		var targets:Array<DisplayObject> = stage.getObjectsUnderPoint(point);
+		targets.reverse();
+
 		if (targets.length <= 0) return stage;
 
 		for (i in 0...targets.length)
@@ -28,11 +30,11 @@ class DisplayObjectUtils
 			{
 				if (Std.is(target, InteractiveObject))
 				{
-					if (InteractiveObject(target).mouseEnabled)
+					if (cast(target, InteractiveObject).mouseEnabled)
 					{
-						var lastMouseActive:InteractiveObject = InteractiveObject(target);
+						var lastMouseActive:InteractiveObject = cast(target, InteractiveObject);
 						var parent:DisplayObjectContainer = target.parent;
-						while (parent)
+						while (parent != null)
 						{
 							if (lastMouseActive == null && parent.mouseEnabled)
 							{

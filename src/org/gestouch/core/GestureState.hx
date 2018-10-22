@@ -1,6 +1,7 @@
 package org.gestouch.core;
 
 import org.gestouch.gestures.Gesture;
+
 class GestureState
 {
     private static inline var POSSIBLE_NAME:String      = "GestureState.POSSIBLE";

@@ -17,7 +17,7 @@ class Gesture extends EventDispatcher
 	 * (not an accidental offset on touch),
 	 * based on 20 pixels on a 252ppi device.
 	 */
-	public static var DEFAULT_SLOP:Int = Math.round(20 / 252 * flash.system.Capabilities.screenDPI);
+	public static var DEFAULT_SLOP:Int = Math.round(20 / 252 * openfl.system.Capabilities.screenDPI);
 
 	/**
 	 * If a gesture should receive a touch.
@@ -103,7 +103,7 @@ class Gesture extends EventDispatcher
 			return null;
 
 		uninstallTarget(target);
-		if (value)
+		if (value != null)
 		{
 			_targetAdapter = Gestouch.createGestureTargetAdapter(value);
 		}

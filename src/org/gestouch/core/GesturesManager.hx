@@ -1,6 +1,6 @@
 package org.gestouch.core;
 
-import helpers.Delayer;
+import openfl.Lib;
 import openfl.Vector;
 import openfl.display.DisplayObject;
 import openfl.display.Stage;
@@ -16,7 +16,6 @@ class GesturesManager
 	private var _dirtyGesturesMap:Map<Gesture, Bool> = new Map<Gesture, Bool>();
 	private var _dirtyGesturesCount:Int = 0;
 	private var _stage:Stage;
-	private var _stateResetDelayer:Delayer;
 
 	public function new()
 	{
@@ -30,14 +29,13 @@ class GesturesManager
 
 	private function resetDirtyGestures():Void
 	{
-		_stateResetDelayer = null;
-
 		for (gesture in _dirtyGesturesMap.keys())
 		{
 			gesture.reset();
 		}
 		_dirtyGesturesCount = 0;
 		_dirtyGesturesMap = new Map<Gesture, Bool>();
+		Lib.current.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 	}
 
 	@:allow(org.gestouch.gestures.Gesture)
@@ -132,10 +130,7 @@ class GesturesManager
 		{
 			_dirtyGesturesMap.set(gesture, true);
 			_dirtyGesturesCount++;
-			if (_stateResetDelayer == null)
-			{
-				_stateResetDelayer = Delayer.nextFrame(resetDirtyGestures);
-			}
+			Lib.current.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 	}
 
@@ -326,5 +321,10 @@ class GesturesManager
 		{
 			onStageAvailable(target.stage);
 		}
+	}
+
+	private function enterFrameHandler(event:Event):Void
+	{
+		resetDirtyGestures();
 	}
 }

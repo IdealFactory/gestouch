@@ -18,29 +18,10 @@ class TransformGesture extends AbstractContinuousGesture
 		super(target);
 	}
 
-	public var offsetX(get, default):Float = 0;
-	private function get_offsetX():Float
-	{
-		return offsetX;
-	}
-
-	public var offsetY(get, default):Float = 0;
-	private function get_offsetY():Float
-	{
-		return offsetY;
-	}
-
-	public var rotation(get, default):Float = 0;
-	private function get_rotation():Float
-	{
-		return rotation;
-	}
-
-	public var scale(get, default):Float = 1;
-	private function get_scale():Float
-	{
-		return scale;
-	}
+	public var scale:Float = 1;
+	public var offsetX:Float = 0;
+	public var offsetY:Float = 0;
+	public var rotation:Float = 0;
 
 	override public function reflect():Class<Dynamic>
 	{
@@ -95,7 +76,7 @@ class TransformGesture extends AbstractContinuousGesture
 			if (slop > 0 && touch.locationOffset.length < slop)
 			{
 				// Not recognized yet
-				if (_touch2)
+				if (_touch2 != null)
 				{
 					// Recalculate _transformVector to avoid initial "jump" on recognize
 					_transformVector = _touch2.location.subtract(_touch1.location);
@@ -104,19 +85,17 @@ class TransformGesture extends AbstractContinuousGesture
 			}
 		}
 
-		if (_touch2 && !currTransformVector)
+		if (_touch2 != null)
 		{
 			currTransformVector = _touch2.location.subtract(_touch1.location);
-		}
 
-		offsetX = location.x - prevLocation.x;
-		offsetY = location.y - prevLocation.y;
-		if (_touch2)
-		{
 			rotation = Math.atan2(currTransformVector.y, currTransformVector.x) - Math.atan2(_transformVector.y, _transformVector.x);
 			scale = currTransformVector.length / _transformVector.length;
 			_transformVector = _touch2.location.subtract(_touch1.location);
 		}
+
+		offsetX = location.x - prevLocation.x;
+		offsetY = location.y - prevLocation.y;
 
 		setState(state == GestureState.POSSIBLE ? GestureState.BEGAN : GestureState.CHANGED);
 	}

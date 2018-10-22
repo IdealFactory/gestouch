@@ -1,18 +1,15 @@
 package org.gestouch.core;
 
-import openfl.utils.Dictionary;
-import org.gestouch.core.GesturesManager;
-import org.gestouch.core.TouchesManager;
-import org.gestouch.extensions.native.NativeDisplayListAdapter;
-import org.gestouch.extensions.starling.StarlingDisplayListAdapter;
-import org.gestouch.extensions.starling.StarlingTouchHitTester;
+import haxe.ds.StringMap;
 import org.gestouch.gestures.Gesture;
+import org.gestouch.core.TouchesManager;
+import org.gestouch.core.GesturesManager;
 import org.gestouch.input.NativeInputAdapter;
-import starling.core.Starling;
+import org.gestouch.extensions.native.NativeDisplayListAdapter;
 
 class Gestouch
 {
-	private static var _displayListAdaptersMap:Dictionary<Class<Dynamic>, IDisplayListAdapter> = new Dictionary<Class<Dynamic>, IDisplayListAdapter>();
+	private static var _displayListAdaptersMap:StringMap<IDisplayListAdapter> = new StringMap<IDisplayListAdapter>();
 
 	@:isVar public static var inputAdapter(get, set):IInputAdapter;
 	private static function get_inputAdapter():IInputAdapter
@@ -61,7 +58,7 @@ class Gestouch
 			throw "Argument error: both arguments required.";
 		}
 
-		_displayListAdaptersMap.set(targetClass, adapter);
+		_displayListAdaptersMap.set(Type.getClassName(targetClass), adapter);
 	}
 
 	public static function addTouchHitTester(hitTester:ITouchHitTester, priority:Int = 0):Void
@@ -91,10 +88,9 @@ class Gestouch
 	@:allow(org.gestouch.core.GesturesManager)
 	private static function getDisplayListAdapter(object:Dynamic):IDisplayListAdapter
 	{
-		for (key in _displayListAdaptersMap.iterator())
+		for (key in _displayListAdaptersMap.keys())
 		{
-			var targetClass:Class<Dynamic> = key;
-			if (Std.is(object, targetClass))
+			if (Std.is(object, Type.resolveClass(key)))
 			{
 				return cast(_displayListAdaptersMap.get(key), IDisplayListAdapter) ;
 			}
@@ -105,19 +101,19 @@ class Gestouch
 
 	public static function init():Void
 	{
-		if (Starling.current == null || Starling.current.nativeStage == null)
-		{
-			throw "Starling must be initialized and the Root class must be on the stage";
-		}
-
-		// Initialize native (default) input adapter. Needed for non-DisplayList usage.
-		if (Gestouch.inputAdapter == null)
-		{
-			Gestouch.inputAdapter = new NativeInputAdapter(Starling.current.nativeStage, true, true);
-		}
-
-		Gestouch.addDisplayListAdapter(flash.display.DisplayObject, new NativeDisplayListAdapter());
-		Gestouch.addDisplayListAdapter(starling.display.DisplayObject, new StarlingDisplayListAdapter());
-		Gestouch.addTouchHitTester(new StarlingTouchHitTester(Starling.current), -1);
+//		if (Starling.current == null || Starling.current.nativeStage == null)
+//		{
+//			throw "Starling must be initialized and the Root class must be on the stage";
+//		}
+//
+//		// Initialize native (default) input adapter. Needed for non-DisplayList usage.
+//		if (Gestouch.inputAdapter == null)
+//		{
+//			Gestouch.inputAdapter = new NativeInputAdapter(Starling.current.nativeStage, true, true);
+//		}
+//
+//		Gestouch.addDisplayListAdapter(flash.display.DisplayObject, new NativeDisplayListAdapter());
+//		Gestouch.addDisplayListAdapter(starling.display.DisplayObject, new StarlingDisplayListAdapter());
+//		Gestouch.addTouchHitTester(new StarlingTouchHitTester(Starling.current), -1);
 	}
 }

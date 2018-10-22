@@ -16,10 +16,10 @@ import org.gestouch.utils.GestureUtils;
 @:keepSub
 class SwipeGesture extends AbstractDiscreteGesture
 {
-	private static inline var ANGLE:Float = 40 * GestureUtils.DEGREES_TO_RADIANS;
-	private static inline var MAX_DURATION:Int = 500;
-	private static inline var MIN_OFFSET:Float = Capabilities.screenDPI / 6;
-	private static inline var MIN_VELOCITY:Float = 2 * MIN_OFFSET / MAX_DURATION;
+	private static var ANGLE:Float = 40 * GestureUtils.DEGREES_TO_RADIANS;
+	private static var MAX_DURATION:Int = 500;
+	private static var MIN_OFFSET:Float = Capabilities.screenDPI / 6;
+	private static var MIN_VELOCITY:Float = 2 * MIN_OFFSET / MAX_DURATION;
 
 	/**
 	 * "Dirty" region around touch begin location which is not taken into account for

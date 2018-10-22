@@ -11,7 +11,7 @@ class NativeTouchHitTester implements ITouchHitTester
 
 	public function new(stage:Stage)
 	{
-		if (!stage)
+		if (stage == null)
 		{
 			throw "Missing stage argument.";
 		}
