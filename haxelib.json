@@ -7,7 +7,7 @@
 	"classPath":"org/",
 	"releasenote": "Initial haxelib release",
 	"version": "1.0.0",
-	"url": "https://github.com/guruas3/gestouch",
+	"url": "https://github.com/idealfactory/gestouch",
 	"dependencies": {
     	"openfl": "",
     	"lime": ""
