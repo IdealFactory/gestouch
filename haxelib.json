@@ -9,7 +9,5 @@
 	"version": "1.0.0",
 	"url": "https://github.com/idealfactory/gestouch",
 	"dependencies": {
-    	"openfl": "",
-    	"lime": ""
 	}
 }
