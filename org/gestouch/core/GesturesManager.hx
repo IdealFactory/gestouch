@@ -194,7 +194,7 @@ class GesturesManager
 		{
 			throw "Display list adapter not found for target of type '" + Type.typeof(target) + "'.";
 		}
-		var hierarchy:Vector<Dynamic> = displayListAdapter.getHierarchy(target);
+		var hierarchy:Vector<DisplayObject> = displayListAdapter.getHierarchy(target);
 		var hierarchyLength:Int = hierarchy.length;
 		if (hierarchyLength == 0)
 		{

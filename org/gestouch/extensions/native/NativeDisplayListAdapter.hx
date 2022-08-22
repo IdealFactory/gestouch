@@ -71,9 +71,9 @@ class NativeDisplayListAdapter implements IDisplayListAdapter
 		return false;
 	}
 
-	public function getHierarchy(genericTarget:Dynamic):Vector<Object>
+	public function getHierarchy(genericTarget:Dynamic):Vector<DisplayObject>
 	{
-		var list:Vector<Object> = new Vector<Object>();
+		var list:Vector<DisplayObject> = new Vector<DisplayObject>();
 		var i:Int = 0;
 		var target:DisplayObject = cast(genericTarget, DisplayObject);
 		while (target != null)

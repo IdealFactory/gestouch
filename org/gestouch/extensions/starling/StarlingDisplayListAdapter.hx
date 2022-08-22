@@ -35,9 +35,9 @@ class StarlingDisplayListAdapter implements IDisplayListAdapter
 		return (targetAsDOC != null && objectAsDO != null && targetAsDOC.contains(objectAsDO));
 	}
 
-	public function getHierarchy(genericTarget:Dynamic):Vector<Dynamic>
+	public function getHierarchy(genericTarget:Dynamic):Vector<DisplayObject>
 	{
-		var list:Vector<Dynamic> = new Vector<Dynamic>();
+		var list:Vector<DisplayObject> = new Vector<DisplayObject>();
 		var i:Int = 0;
 		var target:DisplayObject = cast(genericTarget, DisplayObject);
 		while (target != null)
